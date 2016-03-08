@@ -134,7 +134,7 @@ local function run(msg, matches)
       return "Group ID for " ..string.gsub(msg.to.print_name, "_", " ").. ":\n\n"..msg.to.id  
     end
   end
-  if matches[1]:lower() == 'kickme' then-- /kickme
+  if matches[1]:lower() == 'کیکم کن' then-- /kickme
   local receiver = get_receiver(msg)
     if msg.to.type == 'chat' then
       local name = user_print_name(msg.from)
@@ -147,14 +147,14 @@ local function run(msg, matches)
     return
   end
 
-  if matches[1]:lower() == "bnlis" then -- Ban list !
+  if matches[1]:lower() == "لیست بن" then -- Ban list !
     local chat_id = msg.to.id
     if matches[2] and is_admin(msg) then
       chat_id = matches[2] 
     end
     return ban_list(chat_id)
   end
-  if matches[1]:lower() == 'bn' then-- /ban 
+  if matches[1]:lower() == 'بن' then-- /ban 
     if type(msg.reply_id)~="nil" and is_momod(msg) then
       if is_admin(msg) then
         local msgr = get_message(msg.reply_id,ban_by_reply_admins, false)
@@ -180,7 +180,7 @@ local function run(msg, matches)
       else
 		local cbres_extra = {
 		chat_id = msg.to.id,
-		get_cmd = 'bn',
+		get_cmd = 'بن',
 		from_id = msg.from.id
 		}
 		local username = matches[2]
@@ -190,7 +190,7 @@ local function run(msg, matches)
   end
 
 
-  if matches[1]:lower() == 'unbn' then -- /unban 
+  if matches[1]:lower() == 'انبن' then -- /unban 
     if type(msg.reply_id)~="nil" and is_momod(msg) then
       local msgr = get_message(msg.reply_id,unban_by_reply, false)
     end
@@ -207,7 +207,7 @@ local function run(msg, matches)
       else
 		local cbres_extra = {
 			chat_id = msg.to.id,
-			get_cmd = 'unbn',
+			get_cmd = 'انبن',
 			from_id = msg.from.id
 		}
 		local username = matches[2]
@@ -216,7 +216,7 @@ local function run(msg, matches)
 	end
  end
 
-if matches[1]:lower() == 'kk' then
+if matches[1]:lower() == 'کیک' then
     if type(msg.reply_id)~="nil" and is_momod(msg) then
       if is_admin(msg) then
         local msgr = get_message(msg.reply_id,Kick_by_reply_admins, false)
@@ -243,7 +243,7 @@ if matches[1]:lower() == 'kk' then
 	else
 		local cbres_extra = {
 			chat_id = msg.to.id,
-			get_cmd = 'kk',
+			get_cmd = 'کیک',
 			from_id = msg.from.id
 		}
 		local username = matches[2]
@@ -257,7 +257,7 @@ end
     return
   end
 
-  if matches[1]:lower() == 'sbn' then -- Global ban
+  if matches[1]:lower() == 'گلوبال بن' then -- Global ban
     if type(msg.reply_id) ~="nil" and is_admin(msg) then
       return get_message(msg.reply_id,banall_by_reply, false)
     end
@@ -273,7 +273,7 @@ end
       else
 	local cbres_extra = {
 		chat_id = msg.to.id,
-		get_cmd = 'sbn',
+		get_cmd = 'گلوبال بن',
 		from_id = msg.from.id
 	}
 		local username = matches[2]
@@ -281,7 +281,7 @@ end
 		res_user(username, kick_ban_res, cbres_extra)
       	end
   end
-  if matches[1]:lower() == 'unsbn' then -- Global unban
+  if matches[1]:lower() == 'انگلوبال بن' then -- Global unban
     local user_id = matches[2]
     local chat_id = msg.to.id
       if string.match(matches[2], '^%d+$') then
@@ -301,27 +301,27 @@ end
 		res_user(username, kick_ban_res, cbres_extra)
       end
   end
-  if matches[1]:lower() == "sbnlis" then -- Global ban list
+  if matches[1]:lower() == "لیست گلوبال بن" then -- Global ban list
     return banall_list()
   end
 end
 
 return {
   patterns = {
-    "^([Ss]bn) (.*)$",
-    "^([Ss]bn)$",
-    "^([Bb]nlis) (.*)$",
-    "^([Bb]nlis)$",
-    "^([Ss]bnlis)$",
-    "^([Bb]n) (.*)$",
-    "^([Kk]k)$",
-    "^([Uu]nbn) (.*)$",
-    "^([Uu]nsbn) (.*)$",
-    "^([Uu]nsbn)$",
-    "^([Kk]k) (.*)$",
-    "^([Kk]ickme)$",
-    "^([Bb]n)$",
-    "^([Uu]nbn)$",
+    "^(گلوبال بن) (.*)$",
+    "^(گلوبال بن)$",
+    "^(لیست بن) (.*)$",
+    "^(لیست بن)$",
+    "^(لیست گلوبال بن)$",
+    "^(بن) (.*)$",
+    "^(کیک)$",
+    "^(انبن) (.*)$",
+    "^(انگلوبال بن) (.*)$",
+    "^(انگلوبال بن)$",
+    "^(کیک) (.*)$",
+    "^(کیکم کن)$",
+    "^(بن)$",
+    "^(انبن)$",
     "^([Ii][Dd])$",
     "^!!tgservice (.+)$"
   },
